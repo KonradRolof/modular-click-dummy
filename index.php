@@ -12,11 +12,7 @@ require_once 'bootstrap.inc.php';
 </head>
 <body>
 <div class="wrapper">
-    <header class="site-header">
-        <a href="/" class="logo medium-3 columns">
-            Branding
-        </a>
-    </header>
+    <?php $header->render(array('active'=>2)); ?>
     <main class="site-main">
         <section class="row" data-equalizer>
             <div class="columns">
@@ -35,9 +31,7 @@ require_once 'bootstrap.inc.php';
             </div>
         </section>
     </main>
-    <footer class="site-footer">
-
-    </footer>
+    <?php $footer->render(); ?>
 </div>
 <script src="./js/app.js"></script>
 </body>
