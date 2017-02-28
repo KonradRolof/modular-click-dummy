@@ -20,11 +20,6 @@ var COMPATIBILITY = ['last 2 versions', 'ie >= 9'];
 
 // File paths to various assets are defined here.
 var PATHS = {
-    assets: {
-        src: 'src/img/**/*.{png,jpeg,jpg,gif,svg}',
-        dist: 'img',
-        watch: ['src/img', 'src/img/**/*']
-    },
     fonts: {
         src: 'src/fonts/**/*.{ttf,woff,eot,svg,woff2}',
         dist: 'fonts'
@@ -97,34 +92,13 @@ gulp.task('javascript', function () {
         .pipe(gulp.dest(PATHS.scripts.dist));
 });
 
-// Compress images
-gulp.task('images', function (cb) {
-    return gulp.src(PATHS.assets.src)
-        .pipe($.changed(PATHS.assets.dist))
-        .pipe($.imagemin({
-            optimizationLevel: 5,
-            progressive: true,
-            svgoPlugins: [{removeViewBox: false}],
-            interlaced: true
-        }))
-        .pipe(gulp.dest(PATHS.assets.dist));
-});
-
-// Copy font awesome font files to font dir
-gulp.task('copyfonts', function() {
-    return gulp.src(PATHS.fonts.src)
-        .pipe($.changed(PATHS.fonts.dist))
-        .pipe(gulp.dest(PATHS.fonts.dist));
-});
-
 // Build the "dist" folder by running all of the above tasks
 gulp.task('build', function (done) {
-    sequence('clean', ['sass', 'jshint', 'javascript', 'images', 'copyfonts'], done);
+    sequence('clean', ['sass', 'jshint', 'javascript'], done);
 });
 
 // Build the site, and watch for file changes
 gulp.task('default', ['build'], function () {
     gulp.watch(PATHS.styles.watch, ['sass']);
     gulp.watch(PATHS.scripts.watch, ['jshint', 'javascript']);
-    gulp.watch(PATHS.assets.watch, ['images']);
 });
