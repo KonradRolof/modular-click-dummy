@@ -86,6 +86,18 @@ class Module
     }
 
     /**
+     * @return $this
+     * @throws Exception
+     */
+    protected function validateDefaultVars()
+    {
+        if (!is_array($this->getVars())) {
+            throw new Exception('An associative array is needed to set default variables.');
+        }
+        return $this;
+    }
+
+    /**
      * @param $overWriteVars
      *
      * @return $this
@@ -94,7 +106,7 @@ class Module
     protected function validateOverWriteVars($overWriteVars)
     {
         if (!is_array($overWriteVars) & $overWriteVars !== null) {
-            throw new Exception('An associative array is needed to overwrite the default variables');
+            throw new Exception('An associative array is needed to overwrite the default variables.');
         }
         return $this;
     }
@@ -120,16 +132,19 @@ class Module
      */
     protected function checkAndMergeVars($overWriteVars)
     {
-        $this->validateOverWriteVars($overWriteVars);
+        $this
+            ->validateDefaultVars()
+            ->validateOverWriteVars($overWriteVars)
+        ;
         $defaults = $this->getVars();
         $varsArray = !empty($defaults) && is_array($overWriteVars) ? array_merge($defaults, $overWriteVars) : $defaults;
         return $varsArray;
     }
 
     /**
-     * @param array $vars
+     * @param $vars
      */
-    public function setVars(array $vars)
+    public function setVars($vars)
     {
         $this->vars = $vars;
     }
