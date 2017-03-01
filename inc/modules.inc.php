@@ -1,4 +1,7 @@
 <?php
+use classes\Module;
+
+// main site navigation
 $navigation = new Module('navigation');
 $navigation->setVars(
     array(
@@ -6,6 +9,7 @@ $navigation->setVars(
     )
 );
 
+// main site header includes $navigation
 $header = new Module('header');
 $header->setVars(
     array(
@@ -14,4 +18,5 @@ $header->setVars(
     )
 );
 
+// main site footer
 $footer = new Module('footer');
