@@ -34,7 +34,7 @@ class Module
                     ->setTemplate($template)
                 ;
             } catch (Exception $e) {
-                echo 'Exeption: ' . $e->getMessage();
+                $this->renderException($e);
             }
         }
     }
@@ -142,6 +142,28 @@ class Module
     }
 
     /**
+     * echo and exception message box with useful information for better debugging
+     *
+     * @param Exception $exception
+     */
+    protected function renderException(Exception $exception)
+    {
+        $trace = $exception->getTrace();
+        $trace = $trace[count($trace)-1];
+        echo '<div style="background:#e74c3c;border:2px solid #c0392b;padding:10px;margin:5px">'
+            . '<p style="margin:0 0 1px;padding:0;color:white;font-size:14px;line-height:1.2">'
+            . 'Exception in file <b>'
+            . $trace['file']
+            . '</b> on line <b>'
+            . $trace['line']
+            . '</b>:<br>'
+            . $exception->getMessage()
+            . '</p>'
+            . '</div>'
+        ;
+    }
+
+    /**
      * @param $vars
      */
     public function setVars($vars)
@@ -154,13 +176,13 @@ class Module
      */
     public function render($overWriteVars = null)
     {
-        $template = __DIR__ . '/../inc/' . $this->getTemplate();
         try {
+            $template = __DIR__ . '/../inc/' . $this->getTemplate();
             $this->checkTemplateFile($template);
             extract($this->checkAndMergeVars($overWriteVars), EXTR_OVERWRITE);
             include $template;
         } catch (Exception $e) {
-            echo $e->getMessage();
+            $this->renderException($e);
         }
     }
 }
