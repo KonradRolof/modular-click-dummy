@@ -148,6 +148,7 @@ class Module
      */
     protected function renderException(Exception $exception)
     {
+        # TODO add better trace feedback
         $trace = $exception->getTrace();
         $trace = $trace[count($trace)-1];
         echo '<div style="background:#e74c3c;border:2px solid #c0392b;padding:10px;margin:5px">'
