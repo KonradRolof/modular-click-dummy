@@ -12,7 +12,7 @@ require_once __DIR__ . '/bootstrap.inc.php';
 </head>
 <body>
 <div class="wrapper">
-    <?php $header->render(array('active'=>2)); ?>
+    <?php $header->render(2); ?>
     <main class="site-main">
         <section class="row" data-equalizer>
             <div class="columns">

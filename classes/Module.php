@@ -16,9 +16,9 @@ class Module
     protected $template = '';
 
     /**
-     * @var null
+     * @var array
      */
-    protected $vars = null;
+    protected $vars = array();
 
     /**
      * Module constructor.
@@ -56,7 +56,7 @@ class Module
     }
 
     /**
-     * @return null|array
+     * @return array
      */
     protected function getVars()
     {
@@ -78,6 +78,20 @@ class Module
     }
 
     /**
+     * @param $overWriteVars
+     *
+     * @return $this
+     * @throws Exception
+     */
+    protected function validateOverWriteVars($overWriteVars)
+    {
+        if (!is_array($overWriteVars) & $overWriteVars !== null) {
+            throw new Exception('An associative array is needed to overwrite the default variables');
+        }
+        return $this;
+    }
+
+    /**
      * @param string $templateDir
      *
      * @return $this
@@ -85,11 +99,23 @@ class Module
      */
     protected function checkTemplateFile($templateDir)
     {
-        if (file_exists($templateDir)) {
-            return $this;
-        } else {
+        if (!file_exists($templateDir)) {
             throw new Exception('Exception: File ' . $templateDir . 'not found.');
         }
+        return $this;
+    }
+
+    /**
+     * @param $overWriteVars
+     *
+     * @return array
+     */
+    protected function checkAndMergeVars($overWriteVars)
+    {
+        $this->validateOverWriteVars($overWriteVars);
+        $defaults = $this->getVars();
+        $varsArray = !empty($defaults) && is_array($overWriteVars) ? array_merge($defaults, $overWriteVars) : $defaults;
+        return $varsArray;
     }
 
     /**
@@ -101,19 +127,15 @@ class Module
     }
 
     /**
-     * @param null|array $newVars
+     * @param null|array $overWriteVars
      */
-    public function render($newVars = null)
+    public function render($overWriteVars = null)
     {
         $template = __DIR__ . '/../inc/' . $this->getTemplate();
         try {
-            // TODO clean this code from line 103 to 108
-            $defaults = $this->getVars();
             $this->checkTemplateFile($template);
-            if (is_array($defaults)) {
-                $varsArr = is_array($newVars) ? array_merge($defaults, $newVars) : $defaults;
-                extract($varsArr);
-            }
+            $varsArray = $this->checkAndMergeVars($overWriteVars);
+            extract($varsArray, EXTR_OVERWRITE);
             include $template;
         } catch (Exception $e) {
             echo $e->getMessage();
