@@ -42,6 +42,14 @@ class Module
     /**
      * @return string
      */
+    public function __toString()
+    {
+        return __DIR__ . '/../inc/' . $this->getTemplate();
+    }
+
+    /**
+     * @return string
+     */
     protected function getTemplate()
     {
         return $this->template;
