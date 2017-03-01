@@ -1,6 +1,13 @@
 <?php
 namespace classes;
 
+use Exception;
+
+/**
+ * Class Module
+ * @author Konrad Rolof <info@konrad-rolof.de>
+ * @package classes
+ */
 class Module
 {
     /**
@@ -98,7 +105,7 @@ class Module
      */
     public function render($newVars = null)
     {
-        $template = BASE_DIR . '/inc/' . $this->getTemplate();
+        $template = __DIR__ . '/../inc/' . $this->getTemplate();
         try {
             // TODO clean this code from line 103 to 108
             $defaults = $this->getVars();

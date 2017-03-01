@@ -1,5 +1,5 @@
 <?php
-require_once 'bootstrap.inc.php';
+require_once __DIR__ . '/bootstrap.inc.php';
 ?>
 <!DOCTYPE html>
 <html class="no-js">
