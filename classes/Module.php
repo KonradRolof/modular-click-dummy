@@ -157,8 +157,7 @@ class Module
         $template = __DIR__ . '/../inc/' . $this->getTemplate();
         try {
             $this->checkTemplateFile($template);
-            $varsArray = $this->checkAndMergeVars($overWriteVars);
-            extract($varsArray, EXTR_OVERWRITE);
+            extract($this->checkAndMergeVars($overWriteVars), EXTR_OVERWRITE);
             include $template;
         } catch (Exception $e) {
             echo $e->getMessage();
