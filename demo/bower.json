@@ -1,0 +1,26 @@
+{
+  "name": "itlgulp",
+  "description": "ITL Projektvorlage Gulp + Foundation 6",
+  "main": "gulpfile.js",
+  "authors": [
+    "Interlutions GmbH"
+  ],
+  "license": "MIT",
+  "homepage": "ADD_PROJECT_URL",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "resolutions": {
+    "jquery": "~2.2.0"
+  },
+  "devDependencies": {
+    "jquery": "^3.1.0",
+    "foundation-sites": "^6.3.0",
+    "slick-carousel": "^1.6.0"
+  }
+}

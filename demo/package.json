@@ -1,0 +1,35 @@
+{
+  "name": "itlgulp",
+  "version": "1.0.2",
+  "description": "ITL Projektvorlage Gulp + Foundation 6",
+  "main": "gulpfile.js",
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ADD_GIT_URL"
+  },
+  "author": "Interlutions GmbH",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-concat": "^2.6.0",
+    "gulp-if": "^2.0.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-load-plugins": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^2.0.0",
+    "jshint": "^2.9.3",
+    "jshint-stylish": "^2.2.1",
+    "rimraf": "^2.5.4",
+    "run-sequence": "^1.2.2",
+    "yargs": "^4.6.0"
+  },
+  "private": true
+}
