@@ -44,6 +44,14 @@ var PATHS = {
         dist: 'js',
         hint: './src/js/**/*.js',
         watch: ['src/js/**/*.js']
+    },
+    phpClasses: {
+        src: '../classes/**/*.php',
+        dist: 'classes'
+    },
+    phpInclude: {
+        src: '../inc/_bootstrap.inc.php',
+        dist: 'inc'
     }
 };
 
@@ -92,9 +100,19 @@ gulp.task('javascript', function () {
         .pipe(gulp.dest(PATHS.scripts.dist));
 });
 
+gulp.task('copyClasses', function () {
+    return gulp.src(PATHS.phpClasses.src)
+        .pipe(gulp.dest(PATHS.phpClasses.dist));
+});
+
+gulp.task('copyIncludes', function () {
+    return gulp.src(PATHS.phpInclude.src)
+        .pipe(gulp.dest(PATHS.phpInclude.dist));
+});
+
 // Build the "dist" folder by running all of the above tasks
 gulp.task('build', function (done) {
-    sequence('clean', ['sass', 'jshint', 'javascript'], done);
+    sequence('clean', ['copyClasses', 'copyIncludes', 'sass', 'jshint', 'javascript'], done);
 });
 
 // Build the site, and watch for file changes
