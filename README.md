@@ -3,7 +3,7 @@ modular-click-dummy
 
 *Author: [Konrad Rolof](http://www.konrad-rolof.de)*
 
-> Building click dummies as prototype for enormous frameworks like Symfony or Typo3 is often a lot of copy and past of markup. It is not just wasted time to copy your code. The big trouble comes with working in a team or if you must make changes.  
+> Building click dummies as a prototype for enormous frameworks like Symfony or Typo3 is often a lot of copy and past of markup. It is not just wasted time to copy your code. The big trouble comes with working in a team or if you must make changes.  
 So it's better to write the markup of a module just one time an include it at the points where it's needed. This little system should help you the build click dummies easier.
 
 ## What you need?
@@ -31,7 +31,7 @@ The modular-click-dummy system is based on a PHP class and comes with some littl
 Now how to use the modular-click-dummy system?
 
 ### Preparation
-* As I wrote before, you need to write your markup in PHP file instead of HTML files.
+* As I wrote before, you need to write your markup in PHP files instead of HTML files.
 * Add the directories `classes` and `inc`, with the files in it, to your project.
 
 ### Include the system to your click dummy
@@ -130,7 +130,7 @@ You don't have to add values for all variables. Set just key value pairs for the
 
 ## Using modules inside modules
 
-Because it's possible to save PHP objects in variables you can easily add a module to an other module. It is just important the the module you want to include is defined before the module in which it will be included.
+Because it's possible to save PHP objects in variables you can easily add a module to an other module. It is just important the module you want to include is defined before the module in which it will be included.
 
 ```PHP
 $navigation = new Module('navigation');
