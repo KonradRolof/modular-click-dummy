@@ -12,6 +12,7 @@ require_once __DIR__ . '/inc/_bootstrap.inc.php';
 <body>
 <div class="wrapper">
     <?php $header->render(); ?>
+    <?php $heroImage->render(); ?>
     <div class="row">
         <section class="site-left-bar large-3 columns">
 

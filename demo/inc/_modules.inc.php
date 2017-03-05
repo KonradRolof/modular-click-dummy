@@ -20,3 +20,5 @@ $header->setVars(
 
 // main site footer
 $footer = new Module('footer');
+
+$heroImage = new Module('hero-image');
