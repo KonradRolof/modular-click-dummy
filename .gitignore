@@ -101,3 +101,5 @@ Icon
 /demo/inc/_bootstrap.inc.php
 /demo/css/
 /demo/js/
+/demo/node_modules/
+/demo/bower_components/

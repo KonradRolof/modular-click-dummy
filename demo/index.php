@@ -14,10 +14,24 @@ require_once __DIR__ . '/inc/_bootstrap.inc.php';
     <?php $header->render(); ?>
     <?php $heroImage->render(); ?>
     <div class="row">
-        <section class="site-left-bar large-3 columns">
-
+        <section class="site-left-bar large-2 columns">
+            <nav class="navi-add">
+                <ul>
+                    <li>
+                        <a href="#">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#">Link</a>
+                        <ul>
+                            <li>
+                                <a href="#">Child Link</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
         </section>
-        <main class="site-main medium-8 large-6 columns">
+        <main class="site-main medium-8 large-7 columns">
             <div class="box">
                 <h2>What is modular click dummy?</h2>
                 <p>Building click dummies as a prototype for enormous frameworks like Symfony or Typo3 is often a lot of
