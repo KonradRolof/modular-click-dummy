@@ -1,4 +1,4 @@
-<header class="top-bar">
+<header class="site-header top-bar">
     <div class="top-bar-left">
         <ul class="menu">
             <li>
