@@ -1,34 +1,49 @@
 <?php
 namespace classes;
 
-use Exception;
-use classes\Module;
-
+/**
+ * Class ModuleAutoLoader
+ * @author Konrad Rolof <info@konrad-rolof.de>
+ * @package classes
+ */
 class ModuleAutoLoader
 {
+    /**
+     * @var array
+     */
     protected $modules = [];
-
+    /**
+     * @var array
+     */
     protected $moduleNames = [];
-
+    /**
+     * @var string
+     */
     protected $modulesDir = __Dir__ . '/../inc';
 
-    public function getModules()
+    /**
+     * @param array $moduleNamesArray
+     *
+     * @return $this
+     */
+    private function setModules(array $moduleNamesArray)
     {
-        return $this->modules;
-    }
+        $modulesArray = [];
 
-    private function setModules(array $modulesArray)
-    {
+        foreach ($moduleNamesArray as $moduleName) {
+            $modulesArray[$moduleName] = new Module($moduleName);
+        }
+
         $this->modules = $modulesArray;
 
         return $this;
     }
 
-    public function getModuleNames()
-    {
-        return $this->moduleNames;
-    }
-
+    /**
+     * @param array $filesArray
+     *
+     * @return $this
+     */
     protected function setModuleNames(array $filesArray)
     {
         $namesArray = [];
@@ -43,11 +58,19 @@ class ModuleAutoLoader
         return $this;
     }
 
+    /**
+     * @return string
+     */
     protected function getModulesDir()
     {
         return $this->modulesDir;
     }
 
+    /**
+     * @param $directoryString
+     *
+     * @return $this
+     */
     protected function setModulesDir($directoryString)
     {
         $this->modulesDir = $directoryString;
@@ -55,7 +78,12 @@ class ModuleAutoLoader
         return $this;
     }
 
-    public function loadFiles()
+    /**
+     * check directory for files and return array of file names
+     *
+     * @return array
+     */
+    protected function loadFiles()
     {
         $self = $this;
         $fileNames = [];
@@ -72,11 +100,34 @@ class ModuleAutoLoader
         return $fileNames;
     }
 
+    /**
+     * @return array
+     */
+    public function getModules()
+    {
+        return $this->modules;
+    }
+
+    /**
+     * @return array
+     */
+    public function getModuleNames()
+    {
+        return $this->moduleNames;
+    }
+
+    /**
+     * return an array of modules form files in directory
+     *
+     * @return array
+     */
     public function getModulesFromFiles()
     {
         $files = $this->loadFiles();
         $this->setModuleNames($files);
+        $fileNames = $this->getModuleNames();
+        $this->setModules($fileNames);
 
-        return $this->getModuleNames();
+        return $this->getModules();
     }
 }
