@@ -1,6 +1,8 @@
 <?php
 namespace classes;
 
+use Exception;
+
 /**
  * Class ModuleAutoLoader
  * @author Konrad Rolof <info@konrad-rolof.de>
@@ -50,7 +52,9 @@ class ModuleAutoLoader
 
         foreach ($filesArray as $file) {
             $name = explode('.inc', $file, 2);
-            $namesArray[] = $name[0];
+            if (!array_key_exists($name[0], $namesArray)) {
+                $namesArray[] = $name[0];
+            }
         }
 
         $this->moduleNames = $namesArray;
@@ -64,18 +68,6 @@ class ModuleAutoLoader
     protected function getModulesDir()
     {
         return $this->modulesDir;
-    }
-
-    /**
-     * @param $directoryString
-     *
-     * @return $this
-     */
-    protected function setModulesDir($directoryString)
-    {
-        $this->modulesDir = $directoryString;
-
-        return $this;
     }
 
     /**
@@ -98,6 +90,22 @@ class ModuleAutoLoader
         }
 
         return $fileNames;
+    }
+
+    /**
+     * @param $directoryString
+     *
+     * @return $this
+     * @throws Exception
+     */
+    public function setModulesDir($directoryString)
+    {
+        if (!is_string($directoryString)) {
+            throw new Exception('Directory must be given as string.');
+        }
+        $this->modulesDir = $directoryString;
+
+        return $this;
     }
 
     /**
