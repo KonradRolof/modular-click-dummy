@@ -1,5 +1,12 @@
 <?php
 use classes\Module;
+use classes\ModuleAutoLoader;
+
+$autoLoader = new ModuleAutoLoader();
+$test = $autoLoader->getModulesFromFiles();
+echo '<pre>';
+var_dump($test);
+echo '</pre>';
 
 // main site navigation
 $navigation = new Module('navigation');
