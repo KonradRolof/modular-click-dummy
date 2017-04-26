@@ -49,7 +49,7 @@ class ModuleAutoLoader
         $namesArray = [];
 
         foreach ($filesArray as $file) {
-            $name = explode('.', $file, 2);
+            $name = explode('.inc', $file, 2);
             $namesArray[] = $name[0];
         }
 
