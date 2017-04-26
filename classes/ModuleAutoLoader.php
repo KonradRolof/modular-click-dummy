@@ -82,7 +82,8 @@ class ModuleAutoLoader
 
         if ($handle = opendir($self->getModulesDir())) {
             while (false !== ($entry = readdir($handle))) {
-                if ($entry !== '.' && $entry !== '..' && substr($entry, 0, 1) !== '_') {
+                $firstChar = substr($entry, 0, 1);
+                if ($firstChar !== '.' && $firstChar !== '_') {
                     $fileNames[] = $entry;
                 }
             }
