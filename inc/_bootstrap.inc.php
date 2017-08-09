@@ -5,6 +5,7 @@ error_reporting(E_ALL);
 
 // load class Module
 require_once __DIR__ . '/../classes/Module.php';
+require_once __DIR__ . '/../classes/ModuleAutoLoader.php';
 
 // load modules
 require_once __DIR__ . '/_modules.inc.php';

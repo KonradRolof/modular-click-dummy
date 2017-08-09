@@ -1,8 +1,15 @@
 <?php
-use classes\Module;
+use classes\ModuleAutoLoader;
+
+$autoLoader = new ModuleAutoLoader();
+$modules = $autoLoader->getModulesFromFiles();
+
+// get variable from array keys
+foreach ($modules as $key => $module) {
+    $$key = $module;
+}
 
 // main site navigation
-$navigation = new Module('navigation');
 $navigation->setVars(
     array(
         'active' => 1
@@ -10,13 +17,9 @@ $navigation->setVars(
 );
 
 // main site header includes $navigation
-$header = new Module('header');
 $header->setVars(
     array(
         'navigation' => $navigation,
         'active' => 1
     )
 );
-
-// main site footer
-$footer = new Module('footer');
